@@ -9,13 +9,13 @@ export const site = {
   phoneE164: "+917011635990", // used for the tel: link
   whatsappNumber: "917011635990", // country code + number, digits only
 
-  hours: "Mon–Sat, 10 am – 7 pm",
+  hours: "Mon–Sun, 10 am – 7 pm",
 
   hero: {
     title: "Land and homes, checked before we list them.",
     text: "Browse available properties and talk to us directly. We will arrange the site visit.",
     sideLabel: "Site visits arranged",
-    topLabel: "Plots, flats and farm land",
+    topLabel: "Plots · Flats · Farm land",
   },
 };
 

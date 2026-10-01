@@ -13,18 +13,18 @@ const hero = (properties.find((p) => p.data.featured) ?? properties[0])?.data.ph
   <header class="hero">
     <div class="wrap">
       <div class="hwrap">
-        <div class="dimw"><span>{site.hero.topLabel}</span></div>
-        <div class="dimh"><span>{site.hero.sideLabel}</span></div>
         <!-- TODO: replace the placeholder photos in src/assets/properties with real property photos. -->
         <div class="photo">
           {hero && <Image class="bg" src={hero} alt="" widths={[800, 1200, 1600]} sizes="(max-width: 1080px) 100vw, 1080px" loading="eager" />}
           <div class="cap">
+            <p class="eyebrow">{site.hero.topLabel}</p>
             <h1>{site.hero.title}</h1>
             <p>{site.hero.text}</p>
             <div class="cbtns">
               <a class="btn solid" href="#list">View properties</a>
               <a class="btn" href="#contact">Contact us</a>
             </div>
+            <p class="assure"><span aria-hidden="true">✓</span> {site.hero.sideLabel}</p>
           </div>
         </div>
       </div>

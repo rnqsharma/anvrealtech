@@ -17,19 +17,16 @@ nav.top .wrap{display:flex;justify-content:space-between;align-items:center;heig
 
 /* hero */
 .hero{padding:28px 0 8px}
-.hwrap{position:relative;padding-top:26px}
-.photo{position:relative;height:clamp(280px,46vw,420px);border-radius:6px;overflow:hidden;background:#5d7f6c;margin-right:46px}
+.hwrap{position:relative}
+.photo{position:relative;height:clamp(280px,46vw,420px);border-radius:6px;overflow:hidden;background:#5d7f6c}
 .photo .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,53,43,.05) 30%,rgba(18,53,43,.85))}
 .photo .cap{position:absolute;left:0;right:0;bottom:0;padding:28px;color:#fff;z-index:1}
 .photo h1{font-size:clamp(28px,5vw,48px);max-width:17ch}
 .photo p{margin:10px 0 18px;max-width:48ch}
 .photo .btn{border-color:#fff;color:#fff}.photo .solid{background:#fff;color:#12352b}
-.dimw,.dimh{position:absolute;color:var(--blue);font-size:13px;font-weight:600}
-.dimw{top:0;left:0;right:46px;text-align:center;border-top:1.5px dashed var(--blue);height:0}
-.dimw span{position:relative;top:-11px;background:var(--bg);padding:0 8px}
-.dimh{right:0;top:26px;bottom:0;width:40px;border-left:1.5px dashed var(--blue);display:flex;align-items:center;justify-content:center}
-.dimh span{writing-mode:vertical-rl;transform:rotate(180deg);background:var(--bg);padding:8px 0}
+.photo .eyebrow{margin:0 0 10px;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;opacity:.9}
+.photo .assure{margin:14px 0 0;font-size:14px;font-weight:600;opacity:.95}
 
 /* list */
 .sec{padding:36px 0 12px}
@@ -75,5 +72,5 @@ footer{padding:18px 0 90px;font-size:14px;opacity:.75}
 footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .float{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));background:var(--wa);color:#fff;padding:12px 18px;border-radius:99px;font-weight:600;box-shadow:0 4px 14px rgba(0,0,0,.25);z-index:5}
 @media(max-width:800px){.detail{grid-template-columns:1fr}}
-@media(max-width:640px){.photo{margin-right:34px;height:auto;min-height:420px;display:flex;align-items:flex-end}.photo .cap{position:relative;padding:22px}.dimh{width:30px}.dimw{right:34px}.contact .btn{width:100%}.cbtns{width:100%}}
+@media(max-width:640px){.photo{height:auto;min-height:420px;display:flex;align-items:flex-end}.photo .cap{position:relative;padding:22px}.contact .btn{width:100%}.cbtns{width:100%}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
