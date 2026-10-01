@@ -19,6 +19,7 @@ nav.top .wrap{display:flex;justify-content:space-between;align-items:center;heig
 .hero{padding:28px 0 8px}
 .hwrap{position:relative}
 .photo{position:relative;height:clamp(280px,46vw,420px);border-radius:6px;overflow:hidden;background:linear-gradient(135deg,#17463a,#0d2a23)}
+.photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,24,20,.45),rgba(8,24,20,.6) 45%,rgba(8,24,20,.88))}
 .photo .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .photo .cap{position:absolute;left:0;right:0;bottom:0;padding:28px;color:#fff;z-index:1}
 .photo h1{font-size:clamp(28px,5vw,48px);max-width:17ch}
@@ -76,10 +77,10 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .fab.wa{background:var(--wa)}.fab.maps{background:#fff}
 @media(max-width:640px){
 .gwrap{position:relative}
-.arrow{display:flex;align-items:center;justify-content:center;position:absolute;top:30%;z-index:2;width:40px;height:40px;padding:0;border-radius:50%;border:1px solid var(--line);background:color-mix(in srgb,var(--card) 78%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:var(--ink);cursor:pointer;box-shadow:0 4px 16px var(--soft);transition:transform .15s,background .15s}
+.arrow{display:flex;align-items:center;justify-content:center;position:absolute;top:calc(50% - 31px);z-index:2;width:48px;height:48px;padding:0;border-radius:50%;border:1px solid var(--line);background:color-mix(in srgb,var(--card) 78%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:var(--ink);cursor:pointer;box-shadow:0 4px 16px var(--soft);transition:transform .15s,background .15s}
 .arrow:active{transform:scale(.92);background:var(--card)}
 .arrow[hidden]{display:none}
-.arrow.prev{left:22px}.arrow.next{right:22px}
+.arrow.prev{left:calc(9vw + 6px)}.arrow.next{right:calc(9vw + 6px)}
 .g{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;margin:0 -20px;padding:4px 20px 18px;scroll-padding:0 20px;scrollbar-width:none}
 .g::-webkit-scrollbar{display:none}
 .g .card{flex:0 0 82%;scroll-snap-align:center;border-radius:16px;box-shadow:0 8px 24px var(--soft)}
