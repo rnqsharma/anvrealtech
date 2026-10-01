@@ -1,15 +1,17 @@
 ---
-import { site, telLink, waLink } from "../config/site";
+import { site, telLink, waLink, directionsLink } from "../config/site";
 ---
 <section class="contact" id="contact">
   <div class="wrap">
     <div>
       <h2>Interested in a property?</h2>
       <p>Call or message us. {site.hours}.</p>
+      <p class="addr"><strong>Visit us:</strong> {site.address}</p>
     </div>
     <div class="cbtns">
       <a class="btn solid" href={telLink}>Call {site.phoneDisplay}</a>
       <a class="btn wa" href={waLink()}>WhatsApp</a>
+      <a class="btn" href={directionsLink} target="_blank" rel="noopener">Get directions</a>
     </div>
   </div>
 </section>
