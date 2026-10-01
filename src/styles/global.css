@@ -1,5 +1,5 @@
-:root{--bg:#eef2ec;--ink:#12352b;--blue:#2b5cb0;--line:#b9c7bc;--card:#fff;--wa:#1f8f3f;--onink:#eef2ec}
-@media(prefers-color-scheme:dark){:root{--bg:#0e1b17;--ink:#e6efe9;--blue:#8fb3f0;--line:#2c4038;--card:#16261f;--onink:#0e1b17}}
+:root{--bg:#f5f3ee;--ink:#10302a;--blue:#2d5aa6;--line:#dcd8cc;--card:#fffdf9;--wa:#1f8f3f;--onink:#f5f3ee;--soft:rgba(16,48,42,.08)}
+@media(prefers-color-scheme:dark){:root{--bg:#0b1511;--ink:#e9eee7;--blue:#93b4ee;--line:#26382f;--card:#13211b;--onink:#0b1511;--soft:rgba(0,0,0,.35)}}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:16px}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Instrument Sans",system-ui,sans-serif;padding-bottom:env(safe-area-inset-bottom,0)}
@@ -18,9 +18,8 @@ nav.top .wrap{display:flex;justify-content:space-between;align-items:center;heig
 /* hero */
 .hero{padding:28px 0 8px}
 .hwrap{position:relative}
-.photo{position:relative;height:clamp(280px,46vw,420px);border-radius:6px;overflow:hidden;background:#5d7f6c}
+.photo{position:relative;height:clamp(280px,46vw,420px);border-radius:6px;overflow:hidden;background:linear-gradient(135deg,#17463a,#0d2a23)}
 .photo .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,53,43,.05) 30%,rgba(18,53,43,.85))}
 .photo .cap{position:absolute;left:0;right:0;bottom:0;padding:28px;color:#fff;z-index:1}
 .photo h1{font-size:clamp(28px,5vw,48px);max-width:17ch}
 .photo p{margin:10px 0 18px;max-width:48ch}
@@ -31,11 +30,12 @@ nav.top .wrap{display:flex;justify-content:space-between;align-items:center;heig
 /* list */
 .sec{padding:36px 0 12px}
 .sec h2{font-size:28px;margin-bottom:6px}.sec .lead{margin:0 0 16px;opacity:.8}
+.arrow{display:none}
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
 .chips button{border:1px solid var(--ink);border-radius:99px;padding:6px 14px;font:inherit;font-size:14px;background:none;color:var(--ink);cursor:pointer}
 .chips button[aria-pressed=true]{background:var(--ink);color:var(--onink)}
 .g{display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(290px,1fr))}
-.card{background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden;display:flex;flex-direction:column}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;box-shadow:0 1px 2px var(--soft);overflow:hidden;display:flex;flex-direction:column}
 .card[hidden]{display:none}
 .card .ph{position:relative;display:block;aspect-ratio:16/10;background:var(--line)}
 .card .ph img{width:100%;height:100%;object-fit:cover;display:block}
@@ -74,6 +74,17 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .float{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));display:flex;gap:12px;z-index:5}
 .fab{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.25)}
 .fab.wa{background:var(--wa)}.fab.maps{background:#fff}
+@media(max-width:640px){
+.gwrap{position:relative}
+.arrow{display:flex;align-items:center;justify-content:center;position:absolute;top:30%;z-index:2;width:40px;height:40px;padding:0;border-radius:50%;border:1px solid var(--line);background:color-mix(in srgb,var(--card) 78%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:var(--ink);cursor:pointer;box-shadow:0 4px 16px var(--soft);transition:transform .15s,background .15s}
+.arrow:active{transform:scale(.92);background:var(--card)}
+.arrow[hidden]{display:none}
+.arrow.prev{left:22px}.arrow.next{right:22px}
+.g{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;margin:0 -20px;padding:4px 20px 18px;scroll-padding:0 20px;scrollbar-width:none}
+.g::-webkit-scrollbar{display:none}
+.g .card{flex:0 0 82%;scroll-snap-align:center;border-radius:16px;box-shadow:0 8px 24px var(--soft)}
+.g .card[hidden]{display:none}
+}
 @media(max-width:800px){.detail{grid-template-columns:1fr}}
 @media(max-width:640px){.photo{height:auto;min-height:420px;display:flex;align-items:flex-end}.photo .cap{position:relative;padding:22px}.contact .btn{width:100%}.cbtns{width:100%}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}

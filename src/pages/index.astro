@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import Base from "../layouts/Base.astro";
 import PropertyCard from "../components/PropertyCard.astro";
 import { site } from "../config/site";
@@ -7,7 +6,6 @@ import { getProperties } from "../lib";
 
 const properties = await getProperties();
 const cities = [...new Set(properties.map((p) => p.data.city))];
-const hero = (properties.find((p) => p.data.featured) ?? properties[0])?.data.photo;
 ---
 <Base>
   <header class="hero">
@@ -15,7 +13,6 @@ const hero = (properties.find((p) => p.data.featured) ?? properties[0])?.data.ph
       <div class="hwrap">
         <!-- TODO: replace the placeholder photos in src/assets/properties with real property photos. -->
         <div class="photo">
-          {hero && <Image class="bg" src={hero} alt="" widths={[800, 1200, 1600]} sizes="(max-width: 1080px) 100vw, 1080px" loading="eager" />}
           <div class="cap">
             <p class="eyebrow">{site.hero.topLabel}</p>
             <h1>{site.hero.title}</h1>
@@ -39,8 +36,12 @@ const hero = (properties.find((p) => p.data.featured) ?? properties[0])?.data.ph
         <button type="button" aria-pressed="true" data-city="All">All</button>
         {cities.map((c) => <button type="button" aria-pressed="false" data-city={c}>{c}</button>)}
       </div>
-      <div class="g" id="grid">
-        {properties.map((p) => <PropertyCard property={p} />)}
+      <div class="gwrap">
+        <button type="button" class="arrow prev" id="prev" aria-label="Previous property" hidden><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button type="button" class="arrow next" id="next" aria-label="Next property"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="g" id="grid">
+          {properties.map((p) => <PropertyCard property={p} />)}
+        </div>
       </div>
       <div class="empty" id="empty" hidden>No properties in this location right now. Call us to ask about upcoming listings.</div>
     </div>
@@ -62,6 +63,24 @@ const hero = (properties.find((p) => p.data.featured) ?? properties[0])?.data.ph
         if (match) shown++;
       });
       empty.hidden = shown > 0;
+      document.getElementById("grid")!.scrollTo({ left: 0 });
     })
   );
+  const grid = document.getElementById("grid")!;
+  const step = (dir: number) => {
+    const card = grid.querySelector<HTMLElement>(".card:not([hidden])");
+    const w = (card?.offsetWidth ?? grid.clientWidth) + 14;
+    grid.scrollBy({ left: dir * w, behavior: "smooth" });
+  };
+  const prev = document.getElementById("prev") as HTMLButtonElement;
+  const next = document.getElementById("next") as HTMLButtonElement;
+  const sync = () => {
+    prev.hidden = grid.scrollLeft < 8;
+    next.hidden = grid.scrollLeft + grid.clientWidth >= grid.scrollWidth - 8;
+  };
+  prev.addEventListener("click", () => step(-1));
+  next.addEventListener("click", () => step(1));
+  grid.addEventListener("scroll", sync, { passive: true });
+  chips.forEach((c) => c.addEventListener("click", () => setTimeout(sync, 50)));
+  sync();
 </script>
