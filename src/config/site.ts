@@ -11,9 +11,9 @@ export const site = {
 
   address: "Park Town, Aditya World City, C-124 & C-122, Wave City, Ghaziabad, Uttar Pradesh 201001",
 
-  // Office location, taken from the Google Maps embed (map centre).
-  officeLat: 28.675861,
-  officeLng: 77.417997,
+  // Office location, exact pin position from Google Maps.
+  officeLat: 28.656777049163743,
+  officeLng: 77.48079811933295,
 
   hours: "Mon–Sun, 10 am – 7 pm",
 
