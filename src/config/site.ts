@@ -5,10 +5,9 @@ export const site = {
   description:
     "ANVRealtech is a property dealer listing plots, flats and farm land. Browse available properties and contact us by phone or WhatsApp.",
 
-  // TODO: replace with the real number.
-  phoneDisplay: "+91 00000 00000",
-  phoneE164: "+910000000000", // used for the tel: link
-  whatsappNumber: "910000000000", // country code + number, digits only
+  phoneDisplay: "+91 70116 35990",
+  phoneE164: "+917011635990", // used for the tel: link
+  whatsappNumber: "917011635990", // country code + number, digits only
 
   hours: "Mon–Sat, 10 am – 7 pm",
 
