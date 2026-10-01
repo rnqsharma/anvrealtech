@@ -21,8 +21,10 @@ const hero = (properties.find((p) => p.data.featured) ?? properties[0])?.data.ph
           <div class="cap">
             <h1>{site.hero.title}</h1>
             <p>{site.hero.text}</p>
-            <a class="btn solid" href="#list">View properties</a>
-            <a class="btn" href="#contact">Contact us</a>
+            <div class="cbtns">
+              <a class="btn solid" href="#list">View properties</a>
+              <a class="btn" href="#contact">Contact us</a>
+            </div>
           </div>
         </div>
       </div>
