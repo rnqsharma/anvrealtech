@@ -80,10 +80,10 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .arrow{display:flex;align-items:center;justify-content:center;position:absolute;top:calc(50% - 31px);z-index:2;width:48px;height:48px;padding:0;border-radius:50%;border:1px solid var(--line);background:color-mix(in srgb,var(--card) 78%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:var(--ink);cursor:pointer;box-shadow:0 4px 16px var(--soft);transition:transform .15s,background .15s}
 .arrow:active{transform:scale(.92);background:var(--card)}
 .arrow[hidden]{display:none}
-.arrow.prev{left:calc(9vw + 6px)}.arrow.next{right:calc(9vw + 6px)}
-.g{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;margin:0 -20px;padding:4px 20px 18px;scroll-padding:0 20px;scrollbar-width:none}
+.arrow.prev{left:calc(9vw - 10px)}.arrow.next{right:calc(9vw - 10px)}
+.g{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;margin:0 -20px;padding:4px 9vw 18px;scrollbar-width:none}
 .g::-webkit-scrollbar{display:none}
-.g .card{flex:0 0 82%;scroll-snap-align:center;border-radius:16px;box-shadow:0 8px 24px var(--soft)}
+.g .card{flex:0 0 82vw;scroll-snap-align:center;border-radius:16px;box-shadow:0 8px 24px var(--soft)}
 .g .card[hidden]{display:none}
 }
 @media(max-width:800px){.detail{grid-template-columns:1fr}}
