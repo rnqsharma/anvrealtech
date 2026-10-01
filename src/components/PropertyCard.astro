@@ -1,0 +1,31 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import { telLink, waLink } from "../config/site";
+import { fmt } from "../lib";
+
+interface Props { property: CollectionEntry<"properties">; }
+const { property } = Astro.props;
+const p = property.data;
+const href = `/properties/${property.id}/`;
+const msg = `Hi, I am interested in the ${p.title} in ${p.city}${p.address ? " (" + p.address + ")" : ""}, ${p.size}.`;
+---
+<article class="card" data-city={p.city}>
+  <a class="ph" href={href} aria-label={`${p.title}, ${p.city}`}>
+    <Image src={p.photo} alt={`${p.title} in ${p.city}`} widths={[400, 600, 800]} sizes="(max-width: 640px) 100vw, 340px" />
+    <span class="loc">{p.city}</span>
+    {p.sold && <span class="sold">Sold</span>}
+  </a>
+  <div class="t">
+    <h3><a href={href}>{p.title}</a></h3>
+    {p.address && <div>{p.address}</div>}
+    <div class="spec">
+      <div>Size<b>{p.size}</b></div>
+      <div>Area<b>{fmt(p.sqft)} sq ft</b></div>
+    </div>
+  </div>
+  <div class="act">
+    <a href={telLink}>Call</a>
+    <a href={waLink(msg)}>WhatsApp</a>
+  </div>
+</article>

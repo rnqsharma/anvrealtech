@@ -1,0 +1,10 @@
+---
+import { site, telLink } from "../config/site";
+const [first, ...rest] = [site.name.slice(0, 3), site.name.slice(3)];
+---
+<nav class="top" aria-label="Main">
+  <div class="wrap">
+    <a class="logo" href="/">{first}<i>{rest}</i></a>
+    <a class="btn solid" href={telLink}>Call now</a>
+  </div>
+</nav>

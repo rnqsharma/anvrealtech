@@ -1,0 +1,65 @@
+---
+import { Image } from "astro:assets";
+import Base from "../layouts/Base.astro";
+import PropertyCard from "../components/PropertyCard.astro";
+import { site } from "../config/site";
+import { getProperties } from "../lib";
+
+const properties = await getProperties();
+const cities = [...new Set(properties.map((p) => p.data.city))];
+const hero = (properties.find((p) => p.data.featured) ?? properties[0])?.data.photo;
+---
+<Base>
+  <header class="hero">
+    <div class="wrap">
+      <div class="hwrap">
+        <div class="dimw"><span>{site.hero.topLabel}</span></div>
+        <div class="dimh"><span>{site.hero.sideLabel}</span></div>
+        <!-- TODO: replace the placeholder photos in src/assets/properties with real property photos. -->
+        <div class="photo">
+          {hero && <Image class="bg" src={hero} alt="" widths={[800, 1200, 1600]} sizes="(max-width: 1080px) 100vw, 1080px" loading="eager" />}
+          <div class="cap">
+            <h1>{site.hero.title}</h1>
+            <p>{site.hero.text}</p>
+            <a class="btn solid" href="#list">View properties</a>
+            <a class="btn" href="#contact">Contact us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="sec" id="list">
+    <div class="wrap">
+      <h2>Available properties</h2>
+      <p class="lead">Filter by location.</p>
+      <div class="chips" id="chips">
+        <button type="button" aria-pressed="true" data-city="All">All</button>
+        {cities.map((c) => <button type="button" aria-pressed="false" data-city={c}>{c}</button>)}
+      </div>
+      <div class="g" id="grid">
+        {properties.map((p) => <PropertyCard property={p} />)}
+      </div>
+      <div class="empty" id="empty" hidden>No properties in this location right now. Call us to ask about upcoming listings.</div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const chips = document.querySelectorAll<HTMLButtonElement>("#chips button");
+  const cards = document.querySelectorAll<HTMLElement>("#grid .card");
+  const empty = document.getElementById("empty")!;
+  chips.forEach((chip) =>
+    chip.addEventListener("click", () => {
+      const city = chip.dataset.city!;
+      chips.forEach((c) => c.setAttribute("aria-pressed", String(c === chip)));
+      let shown = 0;
+      cards.forEach((card) => {
+        const match = city === "All" || card.dataset.city === city;
+        card.hidden = !match;
+        if (match) shown++;
+      });
+      empty.hidden = shown > 0;
+    })
+  );
+</script>

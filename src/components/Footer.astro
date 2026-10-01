@@ -1,0 +1,9 @@
+---
+import { site } from "../config/site";
+---
+<footer>
+  <div class="wrap">
+    <span>© {new Date().getFullYear()} {site.name}</span>
+    <span>{site.url.replace("https://", "")}</span>
+  </div>
+</footer>

@@ -1,0 +1,47 @@
+---
+import { Image } from "astro:assets";
+import { render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import { telLink, waLink } from "../../config/site";
+import { getProperties, fmt } from "../../lib";
+
+export async function getStaticPaths() {
+  const properties = await getProperties();
+  return properties.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const p = entry.data;
+const { Content } = await render(entry);
+const heading = `${p.title} in ${p.city}`;
+const msg = `Hi, I am interested in the ${p.title} in ${p.city}${p.address ? " (" + p.address + ")" : ""}, ${p.size}.`;
+---
+<Base title={heading} description={`${heading}. ${p.size} (${fmt(p.sqft)} sq ft). Call or WhatsApp ANVRealtech for details.`}>
+  <div class="wrap">
+    <a class="back" href="/#list">← All properties</a>
+    <div class="detail">
+      <div class="main">
+        <Image src={p.photo} alt={heading} widths={[600, 900, 1200]} sizes="(max-width: 800px) 100vw, 640px" loading="eager" />
+        {p.gallery.length > 0 && (
+          <div class="thumbs">
+            {p.gallery.map((img) => <Image src={img} alt={`${heading} photo`} widths={[300, 600]} sizes="160px" />)}
+          </div>
+        )}
+      </div>
+      <div>
+        <h1>{heading}</h1>
+        {p.address && <p class="addr">{p.address}</p>}
+        {p.sold && <p><strong>This property has been sold.</strong></p>}
+        <div class="spec">
+          <div>Size<b>{p.size}</b></div>
+          <div>Area<b>{fmt(p.sqft)} sq ft</b></div>
+        </div>
+        <div class="cta">
+          <a class="btn solid" href={telLink}>Call</a>
+          <a class="btn wa" href={waLink(msg)}>WhatsApp</a>
+        </div>
+        <div class="desc"><Content /></div>
+      </div>
+    </div>
+  </div>
+</Base>
