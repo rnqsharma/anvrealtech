@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import heroImg from "../assets/hero.jpg";
 import Base from "../layouts/Base.astro";
 import PropertyCard from "../components/PropertyCard.astro";
-import { site } from "../config/site";
+import { site, waLink } from "../config/site";
 import { getProperties } from "../lib";
 
 const properties = await getProperties();
@@ -40,10 +40,23 @@ const cities = [...new Set(properties.map((p) => p.data.city))];
         {cities.map((c) => <button type="button" aria-pressed="false" data-city={c}>{c}</button>)}
       </div>
       <div class="gwrap">
-        <button type="button" class="arrow prev" id="prev" aria-label="Previous property" hidden><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <button type="button" class="arrow next" id="next" aria-label="Next property"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button type="button" class="arrow prev" id="prev" aria-label="Previous property" hidden><svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button type="button" class="arrow next" id="next" aria-label="Next property"><svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <div class="g" id="grid">
           {properties.map((p) => <PropertyCard property={p} />)}
+          <article class="card soon">
+            <div class="ph" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="34" height="34"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+              <span class="loc">Coming soon</span>
+            </div>
+            <div class="t">
+              <h3>New properties coming soon</h3>
+              <div>We are verifying more plots, flats and farm land across NCR. Tell us what you are looking for and we will let you know first.</div>
+            </div>
+            <div class="act">
+              <a href={waLink("Hi, please let me know when new properties are listed.")}>Notify me on WhatsApp</a>
+            </div>
+          </article>
         </div>
       </div>
       <div class="empty" id="empty" hidden>No properties in this location right now. Call us to ask about upcoming listings.</div>
