@@ -21,9 +21,11 @@ const msg = `Hi, I am interested in the ${p.title} in ${p.city}${p.address ? " (
     {p.address && <div>{p.address}</div>}
     <div class="spec">
       <div>Size<b>{p.size}</b></div>
-      <div>Area<b>{fmt(p.sqft)} sq ft</b></div>
+      {p.sqft
+        ? <div>Area<b>{fmt(p.sqft)} sq ft</b></div>
+        : p.rate && <div>Rate<b>{rupees(p.rate)} <small>per sq yd</small></b></div>}
     </div>
-    {p.rate && <div class="rate">{rupees(p.rate)} <span>per sq yd</span></div>}
+    {p.sqft && p.rate && <div class="rate">{rupees(p.rate)} <span>per sq yd</span></div>}
   </div>
   <div class="act">
     <a href={telLink}>Call</a>

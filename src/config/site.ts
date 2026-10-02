@@ -18,8 +18,8 @@ export const site = {
   hours: "Mon–Sun, 10 am – 7 pm",
 
   hero: {
-    title: "Land and homes, checked before we list them.",
-    text: "Browse available properties and talk to us directly. We will arrange the site visit.",
+    title: "Verified Homes & Land. Zero Surprises.",
+    text: "Fully verified plots, flats, and farmland across NCR. Browse online or schedule a direct site visit today.",
     sideLabel: "Site visits arranged",
     topLabel: "Plots · Flats · Farm land",
   },
