@@ -1,5 +1,5 @@
-:root{--bg:#f5f3ee;--ink:#10302a;--blue:#2d5aa6;--line:#dcd8cc;--card:#fffdf9;--wa:#1f8f3f;--onink:#f5f3ee;--soft:rgba(16,48,42,.08);--logo:var(--ink);--gold:#9a7420;--back:color-mix(in srgb,var(--ink) 72%,transparent)}
-@media(prefers-color-scheme:dark){:root{--bg:#0b1511;--ink:#e9eee7;--blue:#93b4ee;--line:#26382f;--card:#13211b;--onink:#0b1511;--soft:rgba(0,0,0,.35);--logo:#fff;--gold:#e5b869;--back:#d1d5db}}
+:root{--bg:#f5f3ee;--ink:#10302a;--blue:#2d5aa6;--line:#dcd8cc;--card:#fffdf9;--wa:#1f8f3f;--onink:#f5f3ee;--soft:rgba(16,48,42,.08);--logo:var(--ink);--gold:#9a7420;--back:color-mix(in srgb,var(--ink) 72%,transparent);--shine:#e9c474}
+@media(prefers-color-scheme:dark){:root{--bg:#0b1511;--ink:#e9eee7;--blue:#93b4ee;--line:#26382f;--card:#13211b;--onink:#0b1511;--soft:rgba(0,0,0,.35);--logo:#fff;--gold:#e5b869;--back:#d1d5db;--shine:#fff}}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:16px}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "DM Sans",system-ui,sans-serif;padding-bottom:env(safe-area-inset-bottom,0)}
@@ -89,7 +89,19 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 }
 @media(max-width:800px){.detail{grid-template-columns:1fr}}
 @media(max-width:640px){.photo{height:auto;min-height:420px;display:flex;align-items:flex-end}.photo .cap{position:relative;padding:22px}.contact .btn{width:100%}.cbtns{width:100%}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.photo .cap>*{animation:rise 1.1s cubic-bezier(.2,.7,.2,1) backwards}
+.photo .cap>:nth-child(2){animation-delay:.2s}.photo .cap>:nth-child(3){animation-delay:.4s}.photo .cap>:nth-child(4){animation-delay:.6s}.photo .cap>:nth-child(5){animation-delay:.8s}
+@keyframes logoin{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+@keyframes shineA{0%{background-position:100% 0}25%,100%{background-position:0 0}}
+@keyframes shineB{0%,25%{background-position:100% 0}50%,100%{background-position:0 0}}
+.logo{display:inline-block;animation:logoin .9s cubic-bezier(.2,.7,.2,1) backwards}
+.logo span,.logo i{display:inline-block;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;background-size:250% 100%;background-position:100% 0}
+.logo span{background-image:linear-gradient(100deg,var(--logo) 40%,var(--gold) 50%,var(--logo) 60%);animation:shineA 6s 1.1s ease-in-out infinite}
+.logo i{background-image:linear-gradient(100deg,var(--gold) 40%,var(--shine) 50%,var(--gold) 60%);animation:logoin .9s .25s cubic-bezier(.2,.7,.2,1) backwards,shineB 6s 1.1s ease-in-out infinite}
+@keyframes zoom{from{transform:scale(1.12)}to{transform:scale(1)}}
+.photo .bg{animation:zoom 9s ease-out both}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.photo .cap>*,.photo .bg,.logo,.logo span,.logo i{animation:none}.logo span,.logo i{background-position:0 0}}
 
 /* media viewer */
 .detail>*{min-width:0}
