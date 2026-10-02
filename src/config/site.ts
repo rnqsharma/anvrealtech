@@ -9,7 +9,7 @@ export const site = {
   phoneE164: "+917011635990", // used for the tel: link
   whatsappNumber: "917011635990", // country code + number, digits only
 
-  address: "Park Town, Aditya World City, C-124 & C-122, Wave City, Ghaziabad, Uttar Pradesh 201001",
+  address: "Park Town, Aditya World City, C-124 & C-122, Ghaziabad, Uttar Pradesh 201001",
 
   // Office location, exact pin position from Google Maps.
   officeLat: 28.656777049163743,
