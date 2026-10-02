@@ -8,3 +8,12 @@ export async function getProperties() {
 }
 
 export const fmt = (n: number) => n.toLocaleString("en-IN");
+
+// Price per sq yd and total, in rupees. Size must start with the number of sq yd, e.g. "500 sq yd".
+export const rupees = (n: number) => "₹" + n.toLocaleString("en-IN");
+export function totalPrice(size: string, rate: number) {
+  const yards = parseFloat(size);
+  if (!yards) return null;
+  const total = yards * rate;
+  return total >= 1e7 ? `₹${+(total / 1e7).toFixed(2)} crore` : `₹${+(total / 1e5).toFixed(2)} lakh`;
+}

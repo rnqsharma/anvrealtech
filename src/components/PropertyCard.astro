@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 import { telLink, waLink } from "../config/site";
-import { fmt } from "../lib";
+import { fmt, rupees } from "../lib";
 
 interface Props { property: CollectionEntry<"properties">; }
 const { property } = Astro.props;
@@ -23,6 +23,7 @@ const msg = `Hi, I am interested in the ${p.title} in ${p.city}${p.address ? " (
       <div>Size<b>{p.size}</b></div>
       <div>Area<b>{fmt(p.sqft)} sq ft</b></div>
     </div>
+    {p.rate && <div class="rate">{rupees(p.rate)} <span>per sq yd</span></div>}
   </div>
   <div class="act">
     <a href={telLink}>Call</a>
